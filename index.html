@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Super Fast Trains</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/f8020557a2.js"></script>
+    <!--custom style-->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Faster+One&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="d-flex justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron title">
+                    <h1 class="text-center logo rounded-bottom text-white display-3"> Super Fast Trains</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card text-white my-3">
+                    <div class="card-header text-light font-weight-bold  bg-black"><i class="fas fa-list"></i>
+                        Current train schedule</div>
+                    <div class="card-body">
+                        <table class="table text-light ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency</th>
+                                    <th scope="col">Next arrival</th>
+                                    <th scope="col">Minutes away</th>
+                                    <th scope="col">Update</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <!--here the rows are gonna go-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card text-white my-3">
+                    <div class="card-header  text-light text-secondary font-weight-bold  bg-black"><i
+                            class="fas fa-train"></i> Add Train
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name" class="text-light ">Train Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Insert train name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="role" class="text-light ">Destination</label>
+                                <input type="text" class="form-control" id="destination"
+                                    placeholder="Insert train destination">
+                            </div>
+                            <div class="form-group">
+                                <label for="start-date" class="text-light ">First train time (HH:mm - military
+                                    time)</label>
+                                <input type="text" class="form-control" id="first-train" placeholder="23:00"
+                                    pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="monthly-rate" class="text-light ">Frequency (min)</label>
+                                <input type="number" class="form-control" id="frequency" placeholder="Frequency"
+                                    required>
+                            </div>
+                            <button class="btn btn-dark" id="submit" type="button">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <footer>
+            <div class="row text-light mb-3">
+                <div class="col">
+                    <hr class="bg-light">
+                </div>
+                <div class="col-auto">Made for UOA Bootcamp, September 2019</div>
+                <div class="col">
+                    <hr class="bg-light">
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal for updating -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Edit train information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name" class="text-dark">Train Name</label>
+                            <input type="text" class="form-control" id="editName" placeholder="Insert train name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="text-dark">Destination</label>
+                            <input type="hidden" id="editID">
+                            <input type="text" class="form-control" id="editDestination"
+                                placeholder="Insert train destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="text-dark">Frequency</label>
+                            <input type="number" class="form-control" id="editfrequency" placeholder="Insert frequency">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="updateButton">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- jQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!--Popper, required by bootstrap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!--bootstrap core-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- Firebase Core -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <!-- Firebase Dataase -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <!--Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!--Main JS-->
+    <script src="../assets/js/app.js"></script>
+</body>
+
+</html>

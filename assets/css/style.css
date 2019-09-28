@@ -1,0 +1,26 @@
+body {
+    background: #cccccc url("../images/bg5.jpg") no-repeat bottom fixed; 
+    background-size: cover;
+ 
+}
+.title {
+    background: rgba(0, 0, 0, 0.8);
+}
+.card {
+    background: rgba(0, 0, 0, 0.8);
+}
+.form-control, .form-control:focus {
+    background: #333;
+    color: #eee;
+    border-color: #666
+}
+.bg-black {
+    background: #000!important;
+}
+.logo {
+    font-family: 'Faster One', cursive;
+}
+.jumbotron {
+    padding:2rem!important; 
+    margin-bottom:0!important;
+}
