@@ -11,8 +11,10 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/f8020557a2.js"></script>
+    <!--reset-->
+    <link rel="stylesheet" href="assets/css/reset.css">
     <!--custom style-->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Faster+One&display=swap" rel="stylesheet">
 
 </head>
@@ -57,25 +59,22 @@
                     <div class="card-body">
                         <form role="form">
                             <div class="form-group">
-                                <label for="name" class="text-light ">Train Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Insert train name"
-                                    required>
+                                <label for="name" class="text-light my-1">Train Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Insert train name">
                             </div>
                             <div class="form-group">
-                                <label for="role" class="text-light ">Destination</label>
+                                <label for="role" class="text-light my-1">Destination</label>
                                 <input type="text" class="form-control" id="destination"
                                     placeholder="Insert train destination">
                             </div>
                             <div class="form-group">
-                                <label for="start-date" class="text-light ">First train time (HH:mm - military
+                                <label for="start-date" class="text-light my-1">First train time (HH:mm - military
                                     time)</label>
-                                <input type="text" class="form-control" id="first-train" placeholder="23:00"
-                                    pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required>
+                                <input type="text" class="form-control" id="first-train" placeholder="23:00">
                             </div>
                             <div class="form-group">
-                                <label for="monthly-rate" class="text-light ">Frequency (min)</label>
-                                <input type="number" class="form-control" id="frequency" placeholder="Frequency"
-                                    required>
+                                <label for="monthly-rate" class="text-light my-1">Frequency (min)</label>
+                                <input type="number" class="form-control" id="frequency" placeholder="Frequency">
                             </div>
                             <button class="btn btn-dark" id="submit" type="button">Submit</button>
                         </form>
@@ -98,7 +97,7 @@
     </div>
 
     <!-- Modal for updating -->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+    <div class="modal fade bg-dark" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -121,9 +120,15 @@
                             <input type="text" class="form-control" id="editDestination"
                                 placeholder="Insert train destination">
                         </div>
+                       <!--  <div class="form-group">
+                            <label for="role" class="text-dark">Starting time</label>
+                            <input type="text" class="form-control" id="editFirstTime"
+                                placeholder="Insert new starting time">
+                        </div> -->
                         <div class="form-group">
                             <label for="role" class="text-dark">Frequency</label>
-                            <input type="number" class="form-control" id="editfrequency" placeholder="Insert frequency">
+                            <input type="text" class="form-control" id="editFrequency"
+                                placeholder="Insert new frequency">
                         </div>
                     </form>
                 </div>
@@ -156,7 +161,7 @@
     <!--Moment.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!--Main JS-->
-    <script src="../assets/js/app.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>

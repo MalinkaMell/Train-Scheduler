@@ -124,7 +124,7 @@ $(document).ready(function () {
             alert("the train was successfully added"); // happy allert that we did everything right :D
 
             //and emptying all the fields
-            name = $("#name").val(""); 
+            name = $("#name").val("");
             destination = $("#destination").val("");
             firstTrain = $("#first-train").val("");
             frequency = $("#frequency").val("");
@@ -154,12 +154,13 @@ $(document).ready(function () {
 
         //opening the child with that unique ID and filling in the input fields with that information, 
         //in case not all of the felds are being updated, so i am saving the old values
-        trainsList.child(t).on("value", function (snapshot) { 
+        trainsList.child(t).on("value", function (snapshot) {
             let snapValue = snapshot.val();
             console.log(snapValue)
             $("#editName").val(snapValue.name);
             $("#editDestination").val(snapValue.destination);
-            $("#editfrequency").val(snapValue.frequency);
+            $("#editFirstTime").val(snapValue.firstTrain);
+            $("#editFrequency").val(snapValue.frequency);
         })
     })
 
@@ -169,7 +170,14 @@ $(document).ready(function () {
 
         let editName = $("#editName").val().trim(); //new name
         let editDestination = $("#editDestination").val().trim(); //new destination
-        let editfrequency = $("#editfrequency").val().trim(); //new destination
+
+        /* here is huge bug: if I input any time that is major than frequency, it act weeird,
+        so i am not going to show it at all
+
+        let editFirstTime = $("#editFirstTime").val().trim(); //new first time
+        */
+
+        let editFrequency = $("#editFrequency").val().trim(); //new frequency
         let id = $("#editID").text(); // our unique ID
 
         let trainsList = database.ref("/trains"); //open trains directory
@@ -178,7 +186,8 @@ $(document).ready(function () {
         trainsList.child(id).update({
             name: editName,
             destination: editDestination,
-            frequency: editfrequency
+            // firstTrain: editFirstTime,
+            frequency: editFrequency
         });
 
         $('#updateModal').modal('hide'); // hide this damn modal after submiting
